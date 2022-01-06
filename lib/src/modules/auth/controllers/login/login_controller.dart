@@ -1,4 +1,5 @@
 
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 part 'login_controller.g.dart';
 
@@ -36,6 +37,7 @@ abstract class _LoginController with Store {
     try{
       loading = true;
       // await _firebaseAuthController.login(_email, _password);
+      Modular.to.navigate('/home');
       loading = false;
       _loggedIn = true;
     } catch(_){
