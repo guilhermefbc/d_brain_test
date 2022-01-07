@@ -18,7 +18,11 @@ abstract class _AuthLoginController with Store {
 
   @action
   loginWithEmail(String email, String password) async {
-    _user = await _authFirebaseRepository.signInWithEmailAndPassword(email, password);
+    try{
+      _user = await _authFirebaseRepository.signInWithEmailAndPassword(email, password);
+    }catch(e){
+      throw Exception(e);
+    }
   }
 
 
