@@ -37,7 +37,7 @@ abstract class _LoginController with Store {
   login() async {
     try{
       loading = true;
-      await _authLoginController.loginWithEmail(_email, _password);
+      // await _authLoginController.loginWithEmail(_email, _password);
       Modular.to.pushReplacementNamed('/home');
       loading = false;
       _loggedIn = true;
