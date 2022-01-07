@@ -1,4 +1,5 @@
 
+import 'package:d_brain_test/src/shared/repositories/authLogin/auth_login_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 part 'login_controller.g.dart';
@@ -6,7 +7,7 @@ part 'login_controller.g.dart';
 class LoginController = _LoginController with _$LoginController;
 
 abstract class _LoginController with Store {
-  // final FirebaseAuthController _firebaseAuthController = FirebaseAuthController();
+  final AuthLoginController _authLoginController = Modular.get<AuthLoginController>();
 
   @observable
   String _email = "";
@@ -36,8 +37,8 @@ abstract class _LoginController with Store {
   login() async {
     try{
       loading = true;
-      // await _firebaseAuthController.login(_email, _password);
-      Modular.to.navigate('/home');
+      await _authLoginController.loginWithEmail(_email, _password);
+      Modular.to.pushReplacementNamed('/home');
       loading = false;
       _loggedIn = true;
     } catch(_){

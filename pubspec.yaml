@@ -37,8 +37,8 @@ dependencies:
   flutter_modular: ^4.3.1
   mobx: ^2.0.6+1
   flutter_mobx: ^2.0.3+2
-  firebase_core: ^1.10.6
   firebase_auth: ^3.3.4
+  firebase_core: ^1.10.6
 
 dev_dependencies:
   flutter_test:
