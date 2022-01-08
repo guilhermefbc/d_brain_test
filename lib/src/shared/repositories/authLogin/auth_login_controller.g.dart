@@ -39,6 +39,13 @@ mixin _$AuthLoginController on _AuthLoginController, Store {
     });
   }
 
+  final _$_setUserAsyncAction = AsyncAction('_AuthLoginController._setUser');
+
+  @override
+  Future _setUser(User? user) {
+    return _$_setUserAsyncAction.run(() => super._setUser(user));
+  }
+
   final _$loginWithEmailAsyncAction =
       AsyncAction('_AuthLoginController.loginWithEmail');
 
@@ -46,20 +53,6 @@ mixin _$AuthLoginController on _AuthLoginController, Store {
   Future loginWithEmail(String email, String password) {
     return _$loginWithEmailAsyncAction
         .run(() => super.loginWithEmail(email, password));
-  }
-
-  final _$_AuthLoginControllerActionController =
-      ActionController(name: '_AuthLoginController');
-
-  @override
-  dynamic _setUser(User? user) {
-    final _$actionInfo = _$_AuthLoginControllerActionController.startAction(
-        name: '_AuthLoginController._setUser');
-    try {
-      return super._setUser(user);
-    } finally {
-      _$_AuthLoginControllerActionController.endAction(_$actionInfo);
-    }
   }
 
   @override

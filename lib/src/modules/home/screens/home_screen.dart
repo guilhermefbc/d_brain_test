@@ -1,4 +1,5 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:d_brain_test/src/modules/home/controllers/camera/my_camera_controller.dart';
 import 'package:d_brain_test/src/modules/home/controllers/home/home_controller.dart';
 import 'package:d_brain_test/src/shared/repositories/authLogin/auth_login_controller.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int _page = 0;
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   final HomeController _homeController = Modular.get<HomeController>();
+  final MyCameraController _myCameraController = Modular.get<MyCameraController>();
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               child: Container(
                   margin: const EdgeInsets.all(8.0),
-                  child: Icon(Icons.photo_camera, size: 40)
+                  child: const Icon(Icons.photo_camera, size: 40)
               )
           ),
           const Icon(Icons.call_split, size: 30),
@@ -57,13 +59,10 @@ class _HomeScreenState extends State<HomeScreen> {
         buttonBackgroundColor: Colors.transparent,
         backgroundColor: Colors.white,
         onTap: (index) {
-          // setState(() {
             print(index);
-          //   _page = index;
-          // });
         },
         letIndexChange: (index) {
-          _homeController.navigateToScreens(index);
+          _myCameraController.takePhoto(index);
           return index != 2;
         },
       ),
