@@ -42,4 +42,8 @@ class AuthFirebaseRepository {
   User? getUser() {
     return _auth.currentUser;
   }
+
+  logOut() async {
+    await _auth.signOut();
+  }
 }

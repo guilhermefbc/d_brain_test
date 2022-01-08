@@ -1,3 +1,4 @@
+import 'package:d_brain_test/src/modules/auth/controllers/login/login_controller.dart';
 import 'package:d_brain_test/src/modules/auth/screens/login_screen.dart';
 import 'package:d_brain_test/src/modules/home/home_module.dart';
 import 'package:d_brain_test/src/shared/repositories/authLogin/auth_login_controller.dart';
@@ -9,6 +10,7 @@ class AuthModule extends Module {
   @override
   // TODO: implement binds
   List<Bind<Object>> get binds => [
+    Bind((i) => LoginController()),
     Bind((i) => AuthLoginController()),
     Bind((i) => AuthFirebaseRepository())
   ];

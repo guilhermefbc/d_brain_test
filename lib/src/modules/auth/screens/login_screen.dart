@@ -3,6 +3,7 @@ import 'package:d_brain_test/src/shared/widgets/buttons/simple_icon_button.dart'
 import 'package:d_brain_test/src/shared/widgets/text_fields/login_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -12,7 +13,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final LoginController _loginController = LoginController();
+  final LoginController _loginController = Modular.get<LoginController>();
 
   @override
   Widget build(BuildContext context) {

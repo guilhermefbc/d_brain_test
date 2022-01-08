@@ -1,4 +1,4 @@
-import 'package:d_brain_test/src/modules/auth/auth_repository.dart';
+import 'package:d_brain_test/src/modules/auth/auth_module.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class AppModule extends Module {

@@ -25,6 +25,8 @@ abstract class _AuthLoginController with Store {
     }
   }
 
-
+  logOut() async {
+    await _authFirebaseRepository.logOut();
+  }
 
 }
