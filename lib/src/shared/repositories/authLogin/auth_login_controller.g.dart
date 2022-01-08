@@ -24,6 +24,21 @@ mixin _$AuthLoginController on _AuthLoginController, Store {
     });
   }
 
+  final _$statusAtom = Atom(name: '_AuthLoginController.status');
+
+  @override
+  AuthStatus get status {
+    _$statusAtom.reportRead();
+    return super.status;
+  }
+
+  @override
+  set status(AuthStatus value) {
+    _$statusAtom.reportWrite(value, super.status, () {
+      super.status = value;
+    });
+  }
+
   final _$loginWithEmailAsyncAction =
       AsyncAction('_AuthLoginController.loginWithEmail');
 
@@ -33,10 +48,24 @@ mixin _$AuthLoginController on _AuthLoginController, Store {
         .run(() => super.loginWithEmail(email, password));
   }
 
+  final _$_AuthLoginControllerActionController =
+      ActionController(name: '_AuthLoginController');
+
+  @override
+  dynamic _setUser(User? user) {
+    final _$actionInfo = _$_AuthLoginControllerActionController.startAction(
+        name: '_AuthLoginController._setUser');
+    try {
+      return super._setUser(user);
+    } finally {
+      _$_AuthLoginControllerActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
-
+status: ${status}
     ''';
   }
 }

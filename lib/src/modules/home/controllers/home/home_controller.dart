@@ -9,6 +9,6 @@ class HomeController = _HomeController with _$HomeController;
 abstract class _HomeController with Store {
   logOut() async {
     await Modular.get<AuthLoginController>().logOut();
-    Modular.to.pushReplacementNamed('/');
+    Modular.to.pushReplacementNamed('/login');
   }
 }

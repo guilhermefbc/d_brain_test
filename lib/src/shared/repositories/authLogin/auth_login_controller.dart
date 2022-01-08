@@ -12,8 +12,18 @@ abstract class _AuthLoginController with Store {
   @observable
   User? _user;
 
+  @observable
+  AuthStatus status = AuthStatus.loading;
+
   _AuthLoginController() {
-    _user = _authFirebaseRepository.getUser();
+    _setUser(_authFirebaseRepository.getUser());
+  }
+
+  @action
+  _setUser(User? user) async {
+    _user = user;
+    await Future.delayed(const Duration(seconds: 2));
+    status = user == null ? AuthStatus.logoff : AuthStatus.login;
   }
 
   @action
@@ -29,4 +39,8 @@ abstract class _AuthLoginController with Store {
     await _authFirebaseRepository.logOut();
   }
 
+}
+
+enum AuthStatus {
+  loading, login, logoff
 }
