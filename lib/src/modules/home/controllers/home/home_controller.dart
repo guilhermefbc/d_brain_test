@@ -7,8 +7,15 @@ part 'home_controller.g.dart';
 class HomeController = _HomeController with _$HomeController;
 
 abstract class _HomeController with Store {
+
   logOut() async {
     await Modular.get<AuthLoginController>().logOut();
     Modular.to.pushReplacementNamed('/login');
+  }
+
+  navigateToScreens(int index) {
+    if(index == 2) {
+      Modular.to.pushNamed('/home/camera');
+    }
   }
 }

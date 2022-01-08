@@ -38,7 +38,7 @@ abstract class _LoginController with Store {
     try{
       loading = true;
       await _authLoginController.loginWithEmail(_email, _password);
-      Modular.to.pushReplacementNamed('/home');
+      Modular.to.pushReplacementNamed('/home/');
       loading = false;
       _loggedIn = true;
     } catch(_){

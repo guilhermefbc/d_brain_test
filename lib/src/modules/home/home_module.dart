@@ -1,3 +1,4 @@
+import 'package:d_brain_test/src/modules/home/screens/camera_screen.dart';
 import 'package:d_brain_test/src/modules/home/screens/home_screen.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -13,6 +14,7 @@ class HomeModule extends Module {
   @override
   // TODO: implement routes
   List<ModularRoute> get routes => [
-    ChildRoute('/', child: (context, args) => const HomeScreen(),)
+    ChildRoute('/', child: (context, args) => const HomeScreen(),),
+    ChildRoute('/camera', child: (context, args) => const CameraScreen(),),
   ];
 }

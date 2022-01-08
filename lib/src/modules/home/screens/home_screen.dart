@@ -56,15 +56,16 @@ class _HomeScreenState extends State<HomeScreen> {
         color: Colors.white,
         buttonBackgroundColor: Colors.transparent,
         backgroundColor: Colors.white,
-        // animationCurve: Curves.easeInCirc,
-        // animationDuration: Duration(milliseconds: 600),
         onTap: (index) {
-          setState(() {
+          // setState(() {
             print(index);
-            _page = index;
-          });
+          //   _page = index;
+          // });
         },
-        letIndexChange: (index) => index != 2,
+        letIndexChange: (index) {
+          _homeController.navigateToScreens(index);
+          return index != 2;
+        },
       ),
       body: Container(
         decoration: const BoxDecoration(

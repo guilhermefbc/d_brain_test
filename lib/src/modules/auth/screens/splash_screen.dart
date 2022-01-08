@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
       final auth = Modular.get<AuthLoginController>();
 
       if(auth.status == AuthStatus.login) {
-        Modular.to.pushReplacementNamed('/home');
+        Modular.to.pushReplacementNamed('/home/');
       }else if(auth.status == AuthStatus.logoff){
         Modular.to.pushReplacementNamed('/login');
       }
