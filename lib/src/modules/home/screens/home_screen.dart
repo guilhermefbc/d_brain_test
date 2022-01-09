@@ -13,10 +13,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _page = 0;
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   final HomeController _homeController = Modular.get<HomeController>();
   final MyCameraController _myCameraController = Modular.get<MyCameraController>();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _myCameraController.navigateBetweenScreens(0);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,19 +68,11 @@ class _HomeScreenState extends State<HomeScreen> {
             print(index);
         },
         letIndexChange: (index) {
-          _myCameraController.takePhoto(index);
+          _myCameraController.navigateBetweenScreens(index);
           return true;
         },
       ),
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [Colors.blueAccent, Colors.white]
-          ),
-        ),
-      ),
+      body: RouterOutlet(),
     );
   }
 }

@@ -13,9 +13,4 @@ abstract class _HomeController with Store {
     Modular.to.pushReplacementNamed('/login');
   }
 
-  // navigateToScreens(int index) {
-  //   if(index == 2) {
-  //     Modular.to.pushNamed('/home/camera');
-  //   }
-  // }
 }
