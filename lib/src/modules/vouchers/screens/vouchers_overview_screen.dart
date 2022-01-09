@@ -24,12 +24,16 @@ class _VouchersOverviewScreenState extends State<VouchersOverviewScreen> {
             colors: [Colors.blueAccent, Colors.white]
         ),
       ),
-      child: ListView.builder(
-          itemCount: _vouchersController.voucherList.length,
-          itemBuilder: (context, index) {
-            return VoucherItemWidget(voucherController: _vouchersController.voucherList[index],);
-          },
-      ),
+      child: Observer(
+        builder: (_) {
+          return ListView.builder(
+            itemCount: _vouchersController.voucherList.length,
+            itemBuilder: (context, index) {
+              return VoucherItemWidget(voucherController: _vouchersController.voucherList[index],);
+            },
+          );
+        },
+      )
     );
   }
 }

@@ -13,11 +13,11 @@ mixin _$VouchersController on _VouchersController, Store {
       ActionController(name: '_VouchersController');
 
   @override
-  void addVoucher(VoucherController voucher) {
+  void _addVoucher(VoucherController voucher) {
     final _$actionInfo = _$_VouchersControllerActionController.startAction(
-        name: '_VouchersController.addVoucher');
+        name: '_VouchersController._addVoucher');
     try {
-      return super.addVoucher(voucher);
+      return super._addVoucher(voucher);
     } finally {
       _$_VouchersControllerActionController.endAction(_$actionInfo);
     }
