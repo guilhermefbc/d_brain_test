@@ -1,7 +1,5 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:d_brain_test/src/modules/home/controllers/camera/my_camera_controller.dart';
 import 'package:d_brain_test/src/modules/home/controllers/home/home_controller.dart';
-import 'package:d_brain_test/src/shared/repositories/authLogin/auth_login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -15,13 +13,12 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   final HomeController _homeController = Modular.get<HomeController>();
-  final MyCameraController _myCameraController = Modular.get<MyCameraController>();
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _myCameraController.navigateBetweenScreens(0);
+    _homeController.navigateBetweenScreens(0);
   }
 
   @override
@@ -68,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
             print(index);
         },
         letIndexChange: (index) {
-          _myCameraController.navigateBetweenScreens(index);
+          _homeController.navigateBetweenScreens(index);
           return true;
         },
       ),

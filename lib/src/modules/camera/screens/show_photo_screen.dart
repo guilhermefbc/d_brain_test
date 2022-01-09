@@ -1,4 +1,4 @@
-import 'package:d_brain_test/src/modules/home/controllers/camera/my_camera_controller.dart';
+import 'package:d_brain_test/src/modules/camera/controllers/camera/my_camera_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 

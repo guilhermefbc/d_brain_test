@@ -15,18 +15,8 @@ abstract class _MyCameraController with Store {
   @observable
   File? photo;
 
-  navigateBetweenScreens(int index) {
-    switch(index) {
-      case 0: Modular.to.navigate("/home/voucher/"); break;
-      case 1: Modular.to.navigate("/home/test1"); break;
-      case 2: Modular.to.pushNamed('/home/camera'); break;
-      case 3: Modular.to.navigate("/home/test2"); break;
-      case 4: Modular.to.navigate("/home/test3"); break;
-    }
-  }
-
   showPhoto() async {
-    bool? hasPhoto = await Modular.to.pushNamed('/home/photo');
+    bool? hasPhoto = await Modular.to.pushNamed('/home/camera/photo');
     if(hasPhoto ?? false){
       // putPhoto();
       Modular.to.pop();
