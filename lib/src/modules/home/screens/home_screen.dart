@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       bottomNavigationBar: CurvedNavigationBar(
         key: _bottomNavigationKey,
-        index: 2,
+        index: 0,
         height: 60.0,
         items: <Widget>[
           const Icon(Icons.home, size: 30),
@@ -48,22 +48,22 @@ class _HomeScreenState extends State<HomeScreen> {
                 shape: BoxShape.circle
               ),
               child: Container(
-                  margin: const EdgeInsets.all(8.0),
+                  margin: const EdgeInsets.all(5.0),
                   child: const Icon(Icons.photo_camera, size: 40)
               )
           ),
           const Icon(Icons.call_split, size: 30),
           const Icon(Icons.perm_identity, size: 30),
         ],
-        color: Colors.white,
+        color: Colors.blueAccent,
         buttonBackgroundColor: Colors.transparent,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         onTap: (index) {
             print(index);
         },
         letIndexChange: (index) {
           _myCameraController.takePhoto(index);
-          return index != 2;
+          return true;
         },
       ),
       body: Container(
