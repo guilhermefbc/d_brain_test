@@ -26,6 +26,9 @@ class _VoucherItemWidgetState extends State<VoucherItemWidget> {
         icon = Icons.error_outline;
         break;
       }
+      case VoucherStatus.loading: {
+        return const CircularProgressIndicator();
+      }
     }
 
     return Icon(icon);
@@ -36,9 +39,7 @@ class _VoucherItemWidgetState extends State<VoucherItemWidget> {
     return Container(
       padding: const EdgeInsets.only(left: 10.0, right: 10.0, top: 5.0, bottom: 5.0),
       child: GestureDetector(
-        onTap: () {
-          widget.voucherController.status = VoucherStatus.uploaded;
-        },
+        onTap: () {},
         child: Card(
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10)

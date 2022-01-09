@@ -24,6 +24,20 @@ mixin _$VoucherController on _VoucherController, Store {
     });
   }
 
+  final _$_VoucherControllerActionController =
+      ActionController(name: '_VoucherController');
+
+  @override
+  dynamic uploadStatus(UploadTask? progress) {
+    final _$actionInfo = _$_VoucherControllerActionController.startAction(
+        name: '_VoucherController.uploadStatus');
+    try {
+      return super.uploadStatus(progress);
+    } finally {
+      _$_VoucherControllerActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
