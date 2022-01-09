@@ -1,5 +1,6 @@
 import 'package:d_brain_test/src/modules/vouchers/controllers/voucher/voucher_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
 class VoucherItemWidget extends StatefulWidget {
   VoucherController voucherController;
@@ -10,30 +11,55 @@ class VoucherItemWidget extends StatefulWidget {
 }
 
 class _VoucherItemWidgetState extends State<VoucherItemWidget> {
+  Widget _getVoucherStatusIcon(VoucherStatus status) {
+    IconData icon;
+    switch(status) {
+      case VoucherStatus.noUploaded: {
+        icon = Icons.access_time;
+        break;
+      }
+      case VoucherStatus.uploaded: {
+        icon = Icons.check_circle;
+        break;
+      }
+      case VoucherStatus.withProblem: {
+        icon = Icons.error_outline;
+        break;
+      }
+    }
+
+    return Icon(icon);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(left: 10.0, right: 10.0, top: 5.0, bottom: 5.0),
-      child: Card(
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10)
-        ),
-        elevation: 16,
-        child: Container(
-          height: 50.0,
-          margin: const EdgeInsets.only(left: 8.0, right: 8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Icon(Icons.file_copy),
-                  Text(DateTime.now().toString()),
-                  const Icon(Icons.check_circle)
-                ],
-              )
-            ],
+      child: GestureDetector(
+        onTap: () {
+          widget.voucherController.status = VoucherStatus.uploaded;
+        },
+        child: Card(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10)
+          ),
+          elevation: 16,
+          child: Container(
+            height: 50.0,
+            margin: const EdgeInsets.only(left: 8.0, right: 8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Icon(Icons.file_copy),
+                    Text(DateTime.now().toString()),
+                    Observer(builder: (_) => _getVoucherStatusIcon(widget.voucherController.status))
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),
