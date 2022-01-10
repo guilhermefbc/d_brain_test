@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-FlutterLocalNotificationsPlugin();
-
 class MainNotifications {
+  static final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+  FlutterLocalNotificationsPlugin();
 
   static initNotifications() async {
     const AndroidInitializationSettings initializationSettingsAndroid =
@@ -23,11 +22,9 @@ class MainNotifications {
       },
       // backgroundHandler: notificationTapBackground,
     );
-
-    _showNotification();
   }
 
-  static Future<void> _showNotification() async {
+  static Future<void> showNotification() async {
     const AndroidNotificationDetails androidPlatformChannelSpecifics =
     AndroidNotificationDetails('your channel id', 'your channel name',
         channelDescription: 'your channel description',
