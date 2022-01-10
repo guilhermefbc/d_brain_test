@@ -8,14 +8,17 @@ part 'voucher_controller.g.dart';
 class VoucherController = _VoucherController with _$VoucherController;
 
 abstract class _VoucherController with Store {
-  File file;
+  File? file;
+  String? link;
   DateTime date;
 
   @observable
-  VoucherStatus status = VoucherStatus.noUploaded;
+  VoucherStatus status;
 
   _VoucherController({
-    required this.file,
+    this.file,
+    this.link,
+    this.status = VoucherStatus.noUploaded,
     required this.date
   });
 

@@ -9,13 +9,16 @@ class VoucherServices {
   final firebase_storage.FirebaseStorage _storage = firebase_storage.FirebaseStorage.instance;
   final AuthFirebaseRepository _auth = AuthFirebaseRepository();
 
-  _getRef(String dateNow) {
+  _getRef() {
     String root = "users";
     String? userId = _auth.getUser()?.uid;
     String folder = "images";
-    String fileName = 'img-$dateNow.jpg';
 
-    return root + "/" + userId! + "/" + folder + "/" + fileName;
+    return root + "/" + userId! + "/" + folder + "/";
+  }
+
+  String _getFileName(String dateNow) {
+    return "img-$dateNow.jpg";
   }
 
   firebase_storage.SettableMetadata _getMetadata(String dateNow) {
@@ -27,15 +30,33 @@ class VoucherServices {
     );
   }
 
-  Future<firebase_storage.UploadTask?> putPhoto(File photo) async {
-    String date = DateTime.now().toString();
+  firebase_storage.UploadTask? putPhoto(File photo, String date) {
 
     try {
-      return _storage.ref(_getRef(date)).putFile(photo, _getMetadata(date));
+      return _storage.ref(_getRef() + _getFileName(date)).putFile(photo, _getMetadata(date));
     } on firebase_core.FirebaseException catch (e) {
       // e.g, e.code == 'canceled'
     }
   }
 
+  Future<List<Map<String,String?>>> getAllVouchersRefs() async {
+    List<firebase_storage.Reference> refs = [];
+    List<Map<String,String?>> vouchersData = [];
+    
+    refs = (await _storage.ref(_getRef()).listAll()).items;
+    
+    for (firebase_storage.Reference ref in refs) {
+      String? link = await ref.getDownloadURL();
+      firebase_storage.FullMetadata metadata = await ref.getMetadata();
+      String? date = metadata.customMetadata?["date"];
+
+      vouchersData.add({
+        "date": date,
+        "link": link
+      });
+    }
+    
+    return vouchersData;
+  }
 
 }

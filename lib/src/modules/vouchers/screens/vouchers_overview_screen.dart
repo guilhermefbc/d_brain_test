@@ -15,6 +15,13 @@ class _VouchersOverviewScreenState extends State<VouchersOverviewScreen> {
   final VouchersController _vouchersController = Modular.get<VouchersController>();
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _vouchersController.getAllVouchers();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
@@ -26,6 +33,21 @@ class _VouchersOverviewScreenState extends State<VouchersOverviewScreen> {
       ),
       child: Observer(
         builder: (_) {
+          if(_vouchersController.loading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+
+          if(!_vouchersController.loading && _vouchersController.voucherList.isEmpty) {
+            return const Center(
+              child: Text(
+                  "Sem vouchers...",
+                  style: TextStyle(color: Colors.blueAccent, fontSize: 36.0, fontWeight: FontWeight.w400),
+              ),
+            );
+          }
+
           return ListView.builder(
             itemCount: _vouchersController.voucherList.length,
             itemBuilder: (context, index) {
