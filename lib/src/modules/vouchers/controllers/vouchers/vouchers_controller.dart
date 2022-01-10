@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:d_brain_test/src/modules/vouchers/controllers/voucher/voucher_controller.dart';
-import 'package:d_brain_test/src/modules/vouchers/services/vouchers_service.dart';
+import 'package:d_brain_test/src/modules/vouchers/services/vouchers_storage_service.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
@@ -10,7 +10,7 @@ part 'vouchers_controller.g.dart';
 class VouchersController = _VouchersController with _$VouchersController;
 
 abstract class _VouchersController with Store {
-  final VoucherServices _voucherServices = VoucherServices();
+  final VouchersStorageService _voucherServices = VouchersStorageService();
 
   ObservableList<VoucherController> voucherList = ObservableList<VoucherController>();
 

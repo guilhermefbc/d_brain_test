@@ -20,7 +20,7 @@ abstract class _HomeController with Store {
 
   logOut() async {
     await Modular.get<AuthLoginController>().logOut();
-    Modular.to.pushReplacementNamed('/login');
+    Modular.to.navigate("/");
   }
 
 }

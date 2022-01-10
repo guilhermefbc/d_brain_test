@@ -5,7 +5,7 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:firebase_core/firebase_core.dart' as firebase_core;
 
 
-class VoucherServices {
+class VouchersStorageService {
   final firebase_storage.FirebaseStorage _storage = firebase_storage.FirebaseStorage.instance;
   final AuthFirebaseRepository _auth = AuthFirebaseRepository();
 
@@ -44,7 +44,7 @@ class VoucherServices {
     List<Map<String,String?>> vouchersData = [];
     
     refs = (await _storage.ref(_getRef()).listAll()).items;
-    
+
     for (firebase_storage.Reference ref in refs) {
       String? link = await ref.getDownloadURL();
       firebase_storage.FullMetadata metadata = await ref.getMetadata();
