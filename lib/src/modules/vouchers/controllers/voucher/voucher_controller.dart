@@ -18,7 +18,7 @@ abstract class _VoucherController with Store {
   _VoucherController({
     this.file,
     this.link,
-    this.status = VoucherStatus.noUploaded,
+    this.status = VoucherStatus.pendent,
     required this.date
   });
 
@@ -28,14 +28,14 @@ abstract class _VoucherController with Store {
       switch(snapshot.state) {
         case TaskState.running: status = VoucherStatus.loading; break;
         case TaskState.success: status = VoucherStatus.uploaded; break;
-        case TaskState.error: status = VoucherStatus.withProblem; break;
-        case TaskState.canceled: status = VoucherStatus.withProblem; break;
-        case TaskState.paused: status = VoucherStatus.withProblem; break;
+        case TaskState.error: status = VoucherStatus.failed; break;
+        case TaskState.canceled: status = VoucherStatus.failed; break;
+        case TaskState.paused: status = VoucherStatus.pendent; break;
       }
     });
   }
 }
 
 enum VoucherStatus {
- uploaded, noUploaded, withProblem, loading
+ uploaded, pendent, failed, loading
 }

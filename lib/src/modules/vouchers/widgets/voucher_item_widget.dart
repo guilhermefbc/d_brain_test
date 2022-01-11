@@ -14,17 +14,22 @@ class VoucherItemWidget extends StatefulWidget {
 class _VoucherItemWidgetState extends State<VoucherItemWidget> {
   Widget _getVoucherStatusIcon(VoucherStatus status) {
     IconData icon;
+    Color color;
+
     switch(status) {
-      case VoucherStatus.noUploaded: {
+      case VoucherStatus.pendent: {
         icon = Icons.access_time;
+        color = Colors.yellowAccent;
         break;
       }
       case VoucherStatus.uploaded: {
         icon = Icons.check_circle;
+        color = Colors.greenAccent;
         break;
       }
-      case VoucherStatus.withProblem: {
+      case VoucherStatus.failed: {
         icon = Icons.error_outline;
+        color = Colors.redAccent;
         break;
       }
       case VoucherStatus.loading: {
