@@ -37,7 +37,7 @@ class _VoucherItemWidgetState extends State<VoucherItemWidget> {
       }
     }
 
-    return Icon(icon);
+    return Icon(icon,color: color,);
   }
 
   @override
@@ -61,7 +61,13 @@ class _VoucherItemWidgetState extends State<VoucherItemWidget> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Icon(Icons.file_copy),
-                    Text(DateUtil.formatDateAndTime(widget.voucherController.date)),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Name: " + widget.voucherController.name),
+                        Text("Date: " + DateUtil.formatDate(widget.voucherController.date)),
+                      ],
+                    ),
                     Observer(builder: (_) => _getVoucherStatusIcon(widget.voucherController.status))
                   ],
                 )

@@ -42,7 +42,7 @@ class _VouchersOverviewScreenState extends State<VouchersOverviewScreen> {
           if(!_vouchersController.loading && _vouchersController.voucherList.isEmpty) {
             return const Center(
               child: Text(
-                  "Sem vouchers...",
+                  "No vouchers...",
                   style: TextStyle(color: Colors.blueAccent, fontSize: 36.0, fontWeight: FontWeight.w400),
               ),
             );

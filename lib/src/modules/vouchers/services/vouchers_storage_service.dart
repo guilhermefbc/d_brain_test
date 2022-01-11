@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:d_brain_test/src/modules/vouchers/controllers/voucher/voucher_controller.dart';
 import 'package:d_brain_test/src/shared/repositories/auth_service.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:firebase_core/firebase_core.dart' as firebase_core;
@@ -12,13 +13,9 @@ class VouchersStorageService {
   _getRef() {
     String root = "users";
     String? userId = _auth.getUser()?.uid;
-    String folder = "images";
+    String folder = "vouchers";
 
     return root + "/" + userId! + "/" + folder + "/";
-  }
-
-  String _getFileName(String dateNow) {
-    return "img-$dateNow.jpg";
   }
 
   firebase_storage.SettableMetadata _getMetadata(String dateNow) {
@@ -30,12 +27,11 @@ class VouchersStorageService {
     );
   }
 
-  firebase_storage.UploadTask? putPhoto(File photo, String date) {
-
+  firebase_storage.UploadTask? putVoucher(VoucherController voucher) {
     try {
-      return _storage.ref(_getRef() + _getFileName(date)).putFile(photo, _getMetadata(date));
+      return _storage.ref(_getRef() + voucher.name).putFile(voucher.file!, _getMetadata(voucher.date.toString()));
     } on firebase_core.FirebaseException catch (e) {
-      // e.g, e.code == 'canceled'
+      voucher.status = VoucherStatus.failed;
     }
   }
 

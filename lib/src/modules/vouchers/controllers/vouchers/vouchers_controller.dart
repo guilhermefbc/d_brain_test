@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:d_brain_test/src/modules/vouchers/controllers/voucher/voucher_controller.dart';
+import 'package:d_brain_test/src/modules/vouchers/services/vouchers_firestore_service.dart';
 import 'package:d_brain_test/src/modules/vouchers/services/vouchers_storage_service.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -10,7 +11,8 @@ part 'vouchers_controller.g.dart';
 class VouchersController = _VouchersController with _$VouchersController;
 
 abstract class _VouchersController with Store {
-  final VouchersStorageService _voucherServices = VouchersStorageService();
+   static VouchersStorageService _voucherServices = VouchersStorageService();
+   static VouchersFirestoreService _vouchersFirestoreService = VouchersFirestoreService();
 
   ObservableList<VoucherController> voucherList = ObservableList<VoucherController>();
 
@@ -22,25 +24,46 @@ abstract class _VouchersController with Store {
     voucherList.insert(0, voucher);
   }
 
+  String _getVoucherFileName(String dateNow) {
+    return "img-$dateNow.jpg";
+  }
+
+
   createNewVoucher(File file) {
-    VoucherController newVoucher = VoucherController(date: DateTime.now(), file: file);
+    DateTime dateNow = DateTime.now();
+
+    VoucherController newVoucher = VoucherController(date: dateNow, file: file, name: _getVoucherFileName(dateNow.toString()));
     _addVoucher(newVoucher);
-    UploadTask? progress = _voucherServices.putPhoto(newVoucher.file!, newVoucher.date.toString());
+    _vouchersFirestoreService.putVoucher(newVoucher);
+    UploadTask? progress = _voucherServices.putVoucher(newVoucher);
     newVoucher.uploadStatus(progress);
   }
 
-  @action
   getAllVouchers() async {
     if(voucherList.isEmpty) {
-      List<Map<String,String?>> vouchersData = await _voucherServices.getAllVouchersRefs();
-      vouchersData.forEach((voucherData) {
+      List<Map<String, dynamic>>? maps = await _vouchersFirestoreService.getAllVouchers();
+
+      maps?.forEach((map) {
+        print(map.toString());
         _addVoucher(VoucherController(
-            link: voucherData["link"],
-            date: DateTime.parse(voucherData["date"]!),
+            date: DateTime.parse(map["date"]),
+            name: map["name"],
             status: VoucherStatus.uploaded
         ));
       });
     }
+
+    // if(voucherList.isEmpty) {
+    //   List<Map<String,String?>> vouchersData = await _voucherServices.getAllVouchersRefs();
+    //   vouchersData.forEach((voucherData) {
+    //     _addVoucher(VoucherController(
+    //         link: voucherData["link"],
+    //         date: DateTime.parse(voucherData["date"]!),
+    //         status: VoucherStatus.uploaded,
+    //         name: 'Document'
+    //     ));
+    //   });
+    // }
     loading = false;
   }
 }

@@ -11,6 +11,7 @@ abstract class _VoucherController with Store {
   File? file;
   String? link;
   DateTime date;
+  String name;
 
   @observable
   VoucherStatus status;
@@ -18,6 +19,7 @@ abstract class _VoucherController with Store {
   _VoucherController({
     this.file,
     this.link,
+    required this.name,
     this.status = VoucherStatus.pendent,
     required this.date
   });

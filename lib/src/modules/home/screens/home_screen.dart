@@ -26,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Arquivos"),
+        title: const Text("Documents"),
         centerTitle: true,
         actions: [
           IconButton(
