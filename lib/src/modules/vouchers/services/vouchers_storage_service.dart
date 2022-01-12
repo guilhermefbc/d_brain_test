@@ -35,24 +35,24 @@ class VouchersStorageService {
     }
   }
 
-  Future<List<Map<String,String?>>> getAllVouchersRefs() async {
-    List<firebase_storage.Reference> refs = [];
-    List<Map<String,String?>> vouchersData = [];
-    
-    refs = (await _storage.ref(_getRef()).listAll()).items;
-
-    for (firebase_storage.Reference ref in refs) {
-      String? link = await ref.getDownloadURL();
-      firebase_storage.FullMetadata metadata = await ref.getMetadata();
-      String? date = metadata.customMetadata?["date"];
-
-      vouchersData.add({
-        "date": date,
-        "link": link
-      });
-    }
-    
-    return vouchersData;
-  }
+  // Future<List<Map<String,String?>>> getAllVouchersRefs() async {
+  //   List<firebase_storage.Reference> refs = [];
+  //   List<Map<String,String?>> vouchersData = [];
+  //
+  //   refs = (await _storage.ref(_getRef()).listAll()).items;
+  //
+  //   for (firebase_storage.Reference ref in refs) {
+  //     String? link = await ref.getDownloadURL();
+  //     firebase_storage.FullMetadata metadata = await ref.getMetadata();
+  //     String? date = metadata.customMetadata?["date"];
+  //
+  //     vouchersData.add({
+  //       "date": date,
+  //       "link": link
+  //     });
+  //   }
+  //
+  //   return vouchersData;
+  // }
 
 }
