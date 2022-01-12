@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:d_brain_test/src/modules/home/controllers/home/home_controller.dart';
+import 'package:d_brain_test/src/shared/backgroundOperations/my_backgroundFetch_config.dart';
 import 'package:d_brain_test/src/shared/notifications/main_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -20,6 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
     // TODO: implement initState
     super.initState();
     _homeController.navigateBetweenScreens(0);
+    MyBackgroundFetchConfig.initBackgroundFetch(mounted);
   }
 
   @override
