@@ -37,9 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
           )
         ],
         leading: IconButton(
-          onPressed: () {
-            MainNotifications.showNotification();
-          },
+          onPressed: () {},
           icon: const Icon(Icons.cloud_upload),
         ),
       ),
