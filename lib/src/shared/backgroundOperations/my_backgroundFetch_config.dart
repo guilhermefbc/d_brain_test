@@ -1,4 +1,5 @@
 import 'package:background_fetch/background_fetch.dart';
+import 'package:d_brain_test/src/shared/notifications/main_notifications.dart';
 
 class MyBackgroundFetchConfig {
 
@@ -84,7 +85,10 @@ class MyBackgroundFetchConfig {
   }
 
   static void _onBackgroundFetch(String taskId) async {
-    print("Deu certo: " + DateTime.now().toString());
+    print("BackgroundFetch on: " + DateTime.now().toString());
+
+    MainNotifications.showNotification();
+
     // IMPORTANT:  You must signal completion of your fetch task or the OS can punish your app
     // for taking too long in the background.
     BackgroundFetch.finish(taskId);
