@@ -1,5 +1,6 @@
 import 'package:background_fetch/background_fetch.dart';
 import 'package:d_brain_test/src/shared/notifications/main_notifications.dart';
+import 'package:d_brain_test/src/shared/sharedPreferences/my_shared_preferences.dart';
 
 class MyBackgroundFetchConfig {
 
@@ -14,34 +15,6 @@ class MyBackgroundFetchConfig {
 
     print("[BackgroundFetch] Headless event received: $taskId");
     BackgroundFetch.finish(taskId);
-
-    // var timestamp = DateTime.now();
-    //
-    // var prefs = await SharedPreferences.getInstance();
-
-    // Read fetch_events from SharedPreferences
-    // var events = <String>[];
-    // var json = prefs.getString(EVENTS_KEY);
-    // if (json != null) {
-    //   events = jsonDecode(json).cast<String>();
-    // }
-    // // Add new event.
-    // events.insert(0, "$taskId@$timestamp [Headless]");
-    // // Persist fetch events in SharedPreferences
-    // prefs.setString(EVENTS_KEY, jsonEncode(events));
-
-    // if (taskId == 'flutter_background_fetch') {
-      /* DISABLED:  uncomment to fire a scheduleTask in headlessTask.
-    BackgroundFetch.scheduleTask(TaskConfig(
-        taskId: "com.transistorsoft.customtask",
-        delay: 5000,
-        periodic: false,
-        forceAlarmManager: false,
-        stopOnTerminate: false,
-        enableHeadless: true
-    ));
-     */
-    // }
   }
 
   static void initBackgroundFetch(bool mounted) async {
@@ -85,9 +58,12 @@ class MyBackgroundFetchConfig {
   }
 
   static void _onBackgroundFetch(String taskId) async {
+    bool hasPendingVouchers = await MySharedPreferences.hasPendingVouchers();
     print("BackgroundFetch on: " + DateTime.now().toString());
 
-    MainNotifications.showNotification();
+    if(hasPendingVouchers) {
+      MainNotifications.showNotification();
+    }
 
     // IMPORTANT:  You must signal completion of your fetch task or the OS can punish your app
     // for taking too long in the background.
@@ -98,4 +74,5 @@ class MyBackgroundFetchConfig {
     print("[BackgroundFetch] TIMEOUT: $taskId");
     BackgroundFetch.finish(taskId);
   }
+
 }

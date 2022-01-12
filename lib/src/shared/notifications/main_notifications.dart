@@ -1,6 +1,4 @@
-import 'dart:isolate';
-import 'dart:ui';
-
+import 'package:d_brain_test/src/shared/sharedPreferences/my_shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
@@ -23,6 +21,7 @@ class MainNotifications {
       onSelectNotification: (String? payload) async {
         if (payload != null) {
           debugPrint('notification payload: $payload');
+          MySharedPreferences.restartSharedId();
         }
         // selectNotificationSubject.add(payload);
       },
@@ -30,18 +29,9 @@ class MainNotifications {
     );
   }
 
-  // static void notificationTapBackground(NotificationActionDetails details) {
-  //   print('notification(${details.id}) action tapped: ${details.actionId} with payload: ${details.payload}');
-  //   if (details.input?.isNotEmpty ?? false) {
-  //     // ignore: avoid_print
-  //     print('notification action tapped with input: ${details.input}');
-  //   }
-  //
-  //   final SendPort? send = IsolateNameServer.lookupPortByName(_portName);
-  //   send?.send(details);
-  // }
-
   static Future<void> showNotification() async {
+    int counter = await MySharedPreferences.getSharedId();
+
     const AndroidNotificationDetails androidPlatformChannelSpecifics =
     AndroidNotificationDetails('dBrainTest255', 'dBrainTest',
         channelDescription: 'Notification to pending vouchers',
@@ -51,7 +41,7 @@ class MainNotifications {
     const NotificationDetails platformChannelSpecifics =
     NotificationDetails(android: androidPlatformChannelSpecifics);
     await _flutterLocalNotificationsPlugin.show(
-        1,
+        counter,
         'Vouches pending',
         'There are tasks waiting to be uploaded',
         platformChannelSpecifics,
@@ -59,25 +49,3 @@ class MainNotifications {
     );
   }
 }
-
-// class NotificationActionDetails {
-//   /// Constructs an instance of [NotificationActionDetails]
-//   NotificationActionDetails({
-//     required this.id,
-//     required this.actionId,
-//     required this.input,
-//     required this.payload,
-//   });
-//
-//   /// The notification's id.
-//   final int id;
-//
-//   /// The id of the action that was triggered.
-//   final String actionId;
-//
-//   /// The value of the input field if the notification action had an input field.
-//   final String? input;
-//
-//   /// The notification's payload
-//   final String? payload;
-// }
