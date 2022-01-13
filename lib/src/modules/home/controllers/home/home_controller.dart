@@ -12,6 +12,16 @@ abstract class _HomeController with Store {
   @observable
   bool withNotification = false;
 
+
+  _HomeController(){
+    initSwitch();
+  }
+
+  @action
+  initSwitch() async {
+    withNotification = await MySharedPreferences.hasPendingVouchers();
+  }
+
   enableBackgroundNotification() {
     MySharedPreferences.setWhetherHasPendingVouchers(withNotification);
     if(withNotification) {

@@ -24,6 +24,13 @@ mixin _$HomeController on _HomeController, Store {
     });
   }
 
+  final _$initSwitchAsyncAction = AsyncAction('_HomeController.initSwitch');
+
+  @override
+  Future initSwitch() {
+    return _$initSwitchAsyncAction.run(() => super.initSwitch());
+  }
+
   @override
   String toString() {
     return '''

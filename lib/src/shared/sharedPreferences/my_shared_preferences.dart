@@ -15,7 +15,7 @@ class MySharedPreferences {
 
   static setWhetherHasPendingVouchers(bool hasPendingVouchers) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('option', hasPendingVouchers);
+    await prefs.setBool('hasPendingVouchers', hasPendingVouchers);
   }
 
 
