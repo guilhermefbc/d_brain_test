@@ -3,6 +3,7 @@ import 'package:d_brain_test/src/modules/home/controllers/home/home_controller.d
 import 'package:d_brain_test/src/shared/backgroundOperations/my_backgroundFetch_config.dart';
 import 'package:d_brain_test/src/shared/notifications/main_notifications.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -37,10 +38,16 @@ class _HomeScreenState extends State<HomeScreen> {
               icon: const Icon(Icons.exit_to_app)
           )
         ],
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.cloud_upload),
-        ),
+        leading: Observer(
+          builder: (context) => Switch(
+            value: _homeController.withNotification,
+            onChanged: (bool value) {
+              _homeController.withNotification = value;
+              _homeController.enableBackgroundNotification();
+            },
+            activeColor: Colors.white,
+          ),
+        )
       ),
       bottomNavigationBar: CurvedNavigationBar(
         key: _bottomNavigationKey,

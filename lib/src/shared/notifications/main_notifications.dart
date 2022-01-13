@@ -48,4 +48,24 @@ class MainNotifications {
         payload: 'item x'
     );
   }
+
+  static Future<void> showCustomPushNotification(String title, String body) async {
+    int counter = await MySharedPreferences.getSharedId();
+
+    const AndroidNotificationDetails androidPlatformChannelSpecifics =
+    AndroidNotificationDetails('dBrainTest255', 'dBrainTest',
+        channelDescription: 'Notification to pending vouchers',
+        importance: Importance.max,
+        priority: Priority.high,
+        ticker: 'ticker');
+    const NotificationDetails platformChannelSpecifics =
+    NotificationDetails(android: androidPlatformChannelSpecifics);
+    await _flutterLocalNotificationsPlugin.show(
+        counter,
+        title,
+        body,
+        platformChannelSpecifics,
+        payload: 'item x'
+    );
+  }
 }
