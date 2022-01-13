@@ -7,7 +7,7 @@
 ### General settings required
 PS: For security reasons, the following files were not available: **google-services.json**. To get them, contact the developer by email: gfbc255@gmail.com, done this, do the following steps.
 
-1. Add the Firebase file for android **google-services.json** in the path **digistarts/android/app**
+1. Add the Firebase file for android **google-services.json** in the path **d_brain_test/android/app**
 2. Run the command line **flutter pub get**
 3. Done, now just run! 
 
