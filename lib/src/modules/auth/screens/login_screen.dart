@@ -57,7 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Observer(
                   builder: (_) {
                     return LoginTextField(
-                      hint: "Senha",
+                      hint: "Password",
                       prefix: const Icon(Icons.lock),
                       obscure: _loginController.passwordVisible,
                       textInputType: TextInputType.visiblePassword,
