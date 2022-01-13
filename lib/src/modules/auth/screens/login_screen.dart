@@ -32,6 +32,15 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              const Text(
+                "DBrain",
+                style: TextStyle(
+                  fontSize: 54.0,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w300
+                ),
+              ),
+              const SizedBox(height: 50,),
               Observer(
                   builder: (_) {
                     return LoginTextField(

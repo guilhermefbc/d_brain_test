@@ -48,6 +48,15 @@ class _SplashScreenState extends State<SplashScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: const [
+          Text(
+            "DBrain",
+            style: TextStyle(
+                fontSize: 54.0,
+                color: Colors.white,
+                fontWeight: FontWeight.w300
+            ),
+          ),
+          SizedBox(height: 80,),
           CircularProgressIndicator()
         ],
       ),
