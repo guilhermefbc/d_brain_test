@@ -1,4 +1,5 @@
 import 'package:d_brain_test/src/modules/auth/controllers/login/login_controller.dart';
+import 'package:d_brain_test/src/shared/widgets/buttons/simple_custom_button.dart';
 import 'package:d_brain_test/src/shared/widgets/buttons/simple_icon_button.dart';
 import 'package:d_brain_test/src/shared/widgets/text_fields/login_text_field.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
             gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [Colors.blueAccent, Colors.white]
+                colors: [Color(0xFF0039A5), Colors.white]
             ),
         ),
         child: Padding(
@@ -66,11 +67,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   builder: (_) {
                     return SizedBox(
                       height: 44,
-                      child: ElevatedButton(
+                      child: SimpleCustomButton(
                         child: _loginController.loading
-                            ? const CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(Colors.white),)
-                            : const Text("Login"),
-                        onPressed: _loginController.loginPressed,
+                              ? const CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(Colors.white),)
+                              : const Text("Login", style: TextStyle(color: Colors.white, fontSize: 18.0),),
+                        onTap: _loginController.loginPressed,
+                        color: const Color(0xFF125EED),
                       ),
                     );
                   }

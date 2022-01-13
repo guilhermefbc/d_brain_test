@@ -28,8 +28,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Documents"),
+        title: const Text("Documents", style: TextStyle(fontSize: 24, fontWeight: FontWeight.w300),),
         centerTitle: true,
+        backgroundColor: const Color(0xFF0039A5),
         actions: [
           IconButton(
               onPressed: () => _homeController.logOut(),
@@ -50,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
           const Icon(Icons.list, size: 30),
           Container(
               decoration: const BoxDecoration(
-                color: Colors.blueAccent,
+                color: Color(0xFF0039A5),
                 shape: BoxShape.circle
               ),
               child: Container(
@@ -61,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
           const Icon(Icons.call_split, size: 30),
           const Icon(Icons.perm_identity, size: 30),
         ],
-        color: Colors.blueAccent,
+        color: const Color(0xFF0039A5),
         buttonBackgroundColor: Colors.transparent,
         backgroundColor: Colors.transparent,
         onTap: (index) {

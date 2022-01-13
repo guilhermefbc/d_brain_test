@@ -19,17 +19,17 @@ class _VoucherItemWidgetState extends State<VoucherItemWidget> {
     switch(status) {
       case VoucherStatus.pendent: {
         icon = Icons.access_time;
-        color = Colors.yellowAccent;
+        color = const Color(0xFFFFC048);
         break;
       }
       case VoucherStatus.uploaded: {
         icon = Icons.check_circle;
-        color = Colors.greenAccent;
+        color = const Color(0xFF52E2C7);
         break;
       }
       case VoucherStatus.failed: {
         icon = Icons.error_outline;
-        color = Colors.redAccent;
+        color = const Color(0xFFFF6464);
         break;
       }
       case VoucherStatus.loading: {
@@ -52,7 +52,7 @@ class _VoucherItemWidgetState extends State<VoucherItemWidget> {
           ),
           elevation: 16,
           child: Container(
-            height: 50.0,
+            height: 62.25,
             margin: const EdgeInsets.only(left: 8.0, right: 8.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

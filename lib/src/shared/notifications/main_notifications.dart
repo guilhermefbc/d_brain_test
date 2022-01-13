@@ -43,7 +43,7 @@ class MainNotifications {
     await _flutterLocalNotificationsPlugin.show(
         counter,
         'Vouches pending',
-        'There are tasks waiting to be uploaded',
+        'You need to upload the latest scanned documents',
         platformChannelSpecifics,
         payload: 'item x'
     );

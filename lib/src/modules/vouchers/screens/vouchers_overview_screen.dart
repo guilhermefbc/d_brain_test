@@ -28,7 +28,7 @@ class _VouchersOverviewScreenState extends State<VouchersOverviewScreen> {
         gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Colors.blueAccent, Colors.white]
+            colors: [Color(0xFF0039A5), Colors.white]
         ),
       ),
       child: Observer(

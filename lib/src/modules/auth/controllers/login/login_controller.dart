@@ -34,10 +34,17 @@ abstract class _LoginController with Store {
   setPassword(String password) => _password = password;
 
   @action
+  _cleanLoginValuesAfterLogin() {
+    _password = "";
+    _email = "";
+  }
+
+  @action
   login() async {
     try{
       loading = true;
       await _authLoginController.loginWithEmail(_email, _password);
+      _cleanLoginValuesAfterLogin();
       Modular.to.pushReplacementNamed('/home/');
       loading = false;
       _loggedIn = true;

@@ -164,6 +164,17 @@ mixin _$LoginController on _LoginController, Store {
   }
 
   @override
+  dynamic _cleanLoginValuesAfterLogin() {
+    final _$actionInfo = _$_LoginControllerActionController.startAction(
+        name: '_LoginController._cleanLoginValuesAfterLogin');
+    try {
+      return super._cleanLoginValuesAfterLogin();
+    } finally {
+      _$_LoginControllerActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 passwordVisible: ${passwordVisible},

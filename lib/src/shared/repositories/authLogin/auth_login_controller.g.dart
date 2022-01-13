@@ -55,6 +55,13 @@ mixin _$AuthLoginController on _AuthLoginController, Store {
         .run(() => super.loginWithEmail(email, password));
   }
 
+  final _$logOutAsyncAction = AsyncAction('_AuthLoginController.logOut');
+
+  @override
+  Future logOut() {
+    return _$logOutAsyncAction.run(() => super.logOut());
+  }
+
   @override
   String toString() {
     return '''
