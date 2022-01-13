@@ -120,6 +120,36 @@ mixin _$LoginController on _LoginController, Store {
     });
   }
 
+  final _$emailErrorAtom = Atom(name: '_LoginController.emailError');
+
+  @override
+  String? get emailError {
+    _$emailErrorAtom.reportRead();
+    return super.emailError;
+  }
+
+  @override
+  set emailError(String? value) {
+    _$emailErrorAtom.reportWrite(value, super.emailError, () {
+      super.emailError = value;
+    });
+  }
+
+  final _$passwordErrorAtom = Atom(name: '_LoginController.passwordError');
+
+  @override
+  String? get passwordError {
+    _$passwordErrorAtom.reportRead();
+    return super.passwordError;
+  }
+
+  @override
+  set passwordError(String? value) {
+    _$passwordErrorAtom.reportWrite(value, super.passwordError, () {
+      super.passwordError = value;
+    });
+  }
+
   final _$loginAsyncAction = AsyncAction('_LoginController.login');
 
   @override
@@ -175,10 +205,34 @@ mixin _$LoginController on _LoginController, Store {
   }
 
   @override
+  dynamic _buildErrorMessage() {
+    final _$actionInfo = _$_LoginControllerActionController.startAction(
+        name: '_LoginController._buildErrorMessage');
+    try {
+      return super._buildErrorMessage();
+    } finally {
+      _$_LoginControllerActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic _cleanErrorMessage() {
+    final _$actionInfo = _$_LoginControllerActionController.startAction(
+        name: '_LoginController._cleanErrorMessage');
+    try {
+      return super._cleanErrorMessage();
+    } finally {
+      _$_LoginControllerActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 passwordVisible: ${passwordVisible},
 loading: ${loading},
+emailError: ${emailError},
+passwordError: ${passwordError},
 loggedIn: ${loggedIn},
 isEmailValid: ${isEmailValid},
 isPasswordValid: ${isPasswordValid},

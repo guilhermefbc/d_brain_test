@@ -40,6 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       textInputType: TextInputType.emailAddress,
                       onChanged: _loginController.setEmail,
                       enabled: !_loginController.loading,
+                      errorText: _loginController.emailError,
                     );
                   }
               ),
@@ -53,6 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       textInputType: TextInputType.visiblePassword,
                       onChanged: _loginController.setPassword,
                       enabled: !_loginController.loading,
+                      errorText: _loginController.passwordError,
                       suffix: SimpleIconButton(
                           icon1: const Icon(Icons.visibility),
                           icon2: const Icon(Icons.visibility_off),
@@ -71,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: _loginController.loading
                               ? const CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(Colors.white),)
                               : const Text("Login", style: TextStyle(color: Colors.white, fontSize: 18.0),),
-                        onTap: _loginController.loginPressed,
+                        onTap: _loginController.login,
                         color: const Color(0xFF125EED),
                       ),
                     );

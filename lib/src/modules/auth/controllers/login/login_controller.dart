@@ -24,6 +24,12 @@ abstract class _LoginController with Store {
   @observable
   bool _loggedIn = false;
 
+  @observable
+  String? emailError;
+
+  @observable
+  String? passwordError;
+
   @action
   togglePasswordVisibility() => passwordVisible = !passwordVisible;
 
@@ -48,9 +54,32 @@ abstract class _LoginController with Store {
       Modular.to.pushReplacementNamed('/home/');
       loading = false;
       _loggedIn = true;
+      _cleanErrorMessage();
     } catch(_){
       loading = false;
+      _buildErrorMessage();
     }
+  }
+
+  @action
+  _buildErrorMessage() {
+    if(_email.trim() == "") {
+      emailError = "Email is empty";
+    }else if(!isEmailValid) {
+      emailError = "Email not valid";
+    }
+
+    if(_password.trim() == "") {
+      passwordError = "Password is empty";
+    }else if(!isPasswordValid) {
+      passwordError = "Password less than 6 characters";
+    }
+  } 
+
+  @action
+  _cleanErrorMessage() {
+    emailError = null;
+    passwordError = null;
   }
 
   @computed
@@ -68,4 +97,5 @@ abstract class _LoginController with Store {
 
   @computed
   get loginPressed => (isFormValid && !loading) ? login : (){};
+
 }
