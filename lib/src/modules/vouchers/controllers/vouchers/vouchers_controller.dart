@@ -34,7 +34,7 @@ abstract class _VouchersController with Store {
 
     VoucherController newVoucher = VoucherController(date: dateNow, file: file, name: _getVoucherFileName(dateNow.toString()));
     _addVoucher(newVoucher);
-    _vouchersFirestoreService.putVoucher(newVoucher);
+    _vouchersFirestoreService.addVoucher(newVoucher);
     UploadTask? progress = _voucherServices.putVoucher(newVoucher);
     newVoucher.uploadStatus(progress);
   }
@@ -52,7 +52,9 @@ abstract class _VouchersController with Store {
         ));
       });
     }
+    loading = false;
 
+    ///Get all vouchers by firebase storage
     // if(voucherList.isEmpty) {
     //   List<Map<String,String?>> vouchersData = await _voucherServices.getAllVouchersRefs();
     //   vouchersData.forEach((voucherData) {
@@ -64,6 +66,6 @@ abstract class _VouchersController with Store {
     //     ));
     //   });
     // }
-    loading = false;
   }
+
 }

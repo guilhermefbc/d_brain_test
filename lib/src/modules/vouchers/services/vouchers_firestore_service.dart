@@ -29,14 +29,14 @@ class VouchersFirestoreService {
     return root + "/" + userId! + "/" + folder + "/";
   }
 
-  putVoucher(VoucherController voucher) async {
+  addVoucher(VoucherController voucher) async {
         _vouchers?.add({
           'name': voucher.name,
           'date': voucher.date.toString(),
           'voucher': Blob((await voucher.file?.readAsBytes())!)
         })
-        .then((value) => print("User Added"))
-        .catchError((error) => print("Failed to add user: $error"));
+        .then((_) => print("User voucher"))
+        .catchError((_) => voucher.status = VoucherStatus.failed);
   }
 
   Future<List<Map<String, dynamic>>?> getAllVouchers() async {
