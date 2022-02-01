@@ -1,5 +1,3 @@
-# DBrain Test
-
 ## Getting Started
 ### Available Versions
 * Mobile Android (Tested)
